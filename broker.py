@@ -1,6 +1,12 @@
+import socket
+
+HOST = '127.0.0.1'
+PORT = 11341
+
 class Broker:
     def __init__(self):
         self.subs = {}
+        #socket.create_server((HOST, PORT)).listen()
 
     def register(self, callback, topic):
         try:

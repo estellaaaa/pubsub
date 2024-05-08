@@ -1,41 +1,6 @@
-class Publisher:
-    def __init__(self, broker):
-        self.broker = broker
-
-    def publish(self, message, topic):
-        self.broker.delegate(message, topic)
-
-
-class Subscriber:
-    def __init__(self, broker):
-        self.broker = broker
-
-    def subscribe(self, topic, callback):
-        self.broker.register(callback, topic)
-
-    def receive(self, message):
-        print(self, message)
-
-
-class Broker:
-    def __init__(self):
-        self.subs = {}
-
-    def register(self, callback, topic):
-        try:
-            topic = self.subs[topic]
-            topic.append(callback)
-        except KeyError:
-            self.subs[topic] = [callback]
-
-    def delegate(self, message, topic):
-        try:
-            callbacks = self.subs[topic]
-        except KeyError:
-            return
-        for call in callbacks:
-            call(message)
-
+from broker import Broker
+from publisher import Publisher
+from subscriber import Subscriber
 
 
 broker = Broker()

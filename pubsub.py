@@ -1,3 +1,5 @@
+import os
+import time
 from broker import Broker
 from publisher import Publisher
 from subscriber import Subscriber
@@ -27,6 +29,8 @@ pub1.publish('the EM 2024 is starting soon!', 'sports')
 pub2.publish('wow leon musk got richer lol!', 'environment')
 pub1.publish('aslkjdflkdsaf', 'asdf')
 pub2.publish('new ipad coming, get your money ready', 'electronics')
+
+time.sleep(1)
 
 pub1.publish('UNSUBSCRIBE_ALL', 'electronics')
 pub1.publish('UNSUBSCRIBE_ALL', 'sports')

@@ -21,6 +21,7 @@ sub1.subscribe('environment', callback=lambda x: print('sub1', x))
 sub2.subscribe('electronics', callback=lambda x: print('sub2', x))
 sub3.subscribe('sports', callback=lambda x: print('sub3', x))
 
+
 pub1.publish('a new iphone was announced!!', 'electronics')
 pub1.publish('aslkjdflkdsaf', 'asdf')
 

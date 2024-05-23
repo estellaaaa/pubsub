@@ -2,9 +2,10 @@ import json
 import socket
 import sys
 
+
 class Subscriber:
     def __init__(self, broker_addr, HOST, PORT):
-        self.server = socket.create_server((HOST, PORT))
+        self.addr = (HOST, PORT)
         self.broker_addr = broker_addr
 
     def subscribe(self, topic, callback):
@@ -12,8 +13,15 @@ class Subscriber:
             message = json.dumps(topic)
             connection.sendall(message.encode())
 
-    def receive(self, message):
-        print(self, message)
+    def run(self):
+        with socket.create_server(self.addr) as server:
+            while True:
+                print(f"Server listening on {self.addr[0]}:{self.addr[1]}")
+                conn, addr = server.accept()
+                print(f"Connected by {addr}")
+                incoming_message = json.load(conn.recv(1024).decode())
+                print('SUBSCRIBER:', incoming_message)
+
 
 if __name__ == '__main__':
     broker_port = sys.argv[1]

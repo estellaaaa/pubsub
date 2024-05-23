@@ -17,12 +17,14 @@ class Subscriber:
 
     def run(self, topic, port):
         with socket.create_server(('127.0.0.1', port)) as server:
-            print(f"SUBSCRIBER: Server listening on 127.0.0.1:{port}")
-            conn, addr = server.accept()
-            print(f"SUBSCRIBER: Connected by {addr}")
-            incoming_message = json.loads(conn.recv(1024).decode())
-            print(f'HEY SUBSCRIBER {self.name}:', incoming_message)
-        self.subscribe(topic, port)
+            while True:
+                print(f"SUBSCRIBER: Server listening on 127.0.0.1:{port}")
+                conn, addr = server.accept()
+                print(f"SUBSCRIBER: Connected by {addr}")
+                incoming_message = json.loads(conn.recv(1024).decode())
+                print(f'HEY SUBSCRIBER {self.name}:', incoming_message)
+                conn.close()
+        #self.subscribe(topic, port)
 
 
 if __name__ == '__main__':

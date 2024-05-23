@@ -28,7 +28,9 @@ pub2.publish('wow leon musk got richer lol!', 'environment')
 pub1.publish('aslkjdflkdsaf', 'asdf')
 pub2.publish('new ipad coming, get your money ready', 'electronics')
 
-
+pub1.publish('UNSUBSCRIBE_ALL', 'electronics')
+pub1.publish('UNSUBSCRIBE_ALL', 'sports')
+pub1.publish('UNSUBSCRIBE_ALL', 'environment')
 # class Message:
 #     def __init__(self, topic):
 #         self.topic = topic

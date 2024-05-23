@@ -24,7 +24,7 @@ class Subscriber:
                 conn, addr = server.accept()
                 print(f"SUBSCRIBER: Connected by {addr}")
                 incoming_message = json.loads(conn.recv(1024).decode())
-                if incoming_message == 'UNSUBSCRIBE_ALL':
+                if 'UNSUBSCRIBE_ALL' in incoming_message:
                     self.subscribed = False
                 print(f'HEY SUBSCRIBER {self.name}:', incoming_message)
                 conn.close()

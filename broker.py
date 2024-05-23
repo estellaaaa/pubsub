@@ -14,7 +14,7 @@ class Broker:
                 print(f"Server listening on {broker_host}:{broker_port}")
                 conn, addr = server.accept()
                 print(f"Connected by {addr}")
-                threading.Thread(target=self.register, args=(conn, addr)).start()
+                threading.Thread(target=self.register2, args=(conn, addr)).start()
                 print(self.subs)
 
     def register(self, callback, topic):

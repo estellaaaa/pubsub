@@ -3,23 +3,23 @@ from publisher import Publisher
 from subscriber import Subscriber
 import subprocess
 
-
+PORT = 1212
 # subprocess.Popen(['python', 'broker.py'])
 # broker = Broker()
 
 print(f"meow")
-sub1 = Subscriber('Maria', ('127.0.0.1', 11343))
-sub2 = Subscriber('Garfield', ('127.0.0.1', 11343))
-sub3 = Subscriber('Leo', ('127.0.0.1', 11343))
+sub1 = Subscriber('Maria', ('127.0.0.1', PORT+1))
+sub2 = Subscriber('Garfield', ('127.0.0.1', PORT+2))
+sub3 = Subscriber('Leo', ('127.0.0.1', PORT+3))
 
-pub1 = Publisher('Spiegel', ('127.0.0.1', 11343))
-pub2 = Publisher('BILD', ('127.0.0.1', 11343))
+pub1 = Publisher('Spiegel', ('127.0.0.1', PORT+4))
+pub2 = Publisher('BILD', ('127.0.0.1', PORT+5))
 
-sub1.subscribe('electronics', port=13948)
-sub1.subscribe('environment', port=13425)
+sub1.subscribe('electronics', port=PORT+6)
+sub1.subscribe('environment', port=PORT+7)
 
-sub2.subscribe('electronics', port=25843)
-sub3.subscribe('sports', port=23623)
+sub2.subscribe('electronics', port=PORT+8)
+sub3.subscribe('sports', port=PORT+9)
 
 
 pub1.publish('a new iphone was announced!!', 'electronics')

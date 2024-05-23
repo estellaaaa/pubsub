@@ -19,12 +19,10 @@ class Broker:
                 incoming_message = json.loads(conn.recv(1024).decode())
                 if type(incoming_message) == str:
                     print("subscribing")
-                    threading.Thread(
-                        target=self.register, args=(incoming_message, conn, addr)).start()
+                    threading.Thread(target=self.register, args=(incoming_message, conn, addr)).start()
                 else:
                     print("publishing")
-                    threading.Thread(
-                        target=self.delegate, args=(incoming_message, conn, addr)).start()
+                    threading.Thread(target=self.delegate, args=(incoming_message, conn, addr)).start()
                 print(self.subs)
 
     def delegate(self, incoming_message, conn, addr):

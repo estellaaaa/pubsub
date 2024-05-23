@@ -8,9 +8,9 @@ import subprocess
 # broker = Broker()
 
 print(f"meow")
-sub1 = Subscriber(('127.0.0.1', 11341), '127.0.0.1', 18495)
-sub2 = Subscriber(('127.0.0.1', 11341), '127.0.0.1', 13549)
-sub3 = Subscriber(('127.0.0.1', 11341), '127.0.0.1', 27872)
+sub1 = Subscriber(('127.0.0.1', 11343), '127.0.0.1', 18495)
+sub2 = Subscriber(('127.0.0.1', 11343), '127.0.0.1', 13549)
+sub3 = Subscriber(('127.0.0.1', 11343), '127.0.0.1', 27872)
 
 # pub1 = Publisher(broker)
 # pub2 = Publisher(broker)

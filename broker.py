@@ -39,6 +39,7 @@ class Broker:
         except KeyError:
             return
         for addr in callbacks:
+            print("double meow", addr)
             with socket.create_connection(addr) as connection:
                 message = json.dumps(message)
                 connection.sendall(message.encode())

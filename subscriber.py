@@ -5,24 +5,23 @@ import threading
 
 
 class Subscriber:
-    def __init__(self, broker_addr, HOST, PORT):
-        self.addr = (HOST, PORT)
+    def __init__(self, broker_addr):
         self.broker_addr = broker_addr
         
-    def subscribe(self, topic, callback):
-        with socket.create_connection(self.broker_addr) as connection:
+    def subscribe(self, topic, port):
+        with socket.create_connection(self.broker_addr, source_address=('127.0.0.1', port)) as connection:
             message = json.dumps(topic)
             connection.sendall(message.encode())
-            threading.Thread(target=self.run).start()
+        threading.Thread(target=self.run, args=(port,)).start()
 
-    def run(self):
-        with socket.create_server(self.addr) as server:
-            print(f"SUBSCRIBER: Server listening on {self.addr[0]}:{self.addr[1]}")
+    def run(self, port):
+        with socket.create_server(('127.0.0.1', port)) as server:
+            print(f"SUBSCRIBER: Server listening on 127.0.0.1:{port}")
             conn, addr = server.accept()
             print(f"SUBSCRIBER: Connected by {addr}")
-            incoming_message = json.load(conn.recv(1024).decode())
+            incoming_message = json.loads(conn.recv(1024).decode())
             print('SUBSCRIBER:', incoming_message)
-            # threading.Thread(target=self.run).start()
+            #threading.Thread(target=self.run).start()
 
 
 if __name__ == '__main__':

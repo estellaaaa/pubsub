@@ -1,3 +1,4 @@
+import json
 import socket
 import threading
 
@@ -14,7 +15,7 @@ class Broker:
                 print(f"Server listening on {broker_host}:{broker_port}")
                 conn, addr = server.accept()
                 print(f"Connected by {addr}")
-                incoming_message = conn.recv(1024).decode()
+                incoming_message = json.load(conn.recv(1024).decode())
                 if type(incoming_message) == str:
                     print('subscribing')
                     threading.Thread(target=self.register2, args=(incoming_message, conn, addr)).start()

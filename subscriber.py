@@ -1,3 +1,4 @@
+import json
 import socket
 import sys
 
@@ -8,7 +9,8 @@ class Subscriber:
 
     def subscribe(self, topic, callback):
         with socket.create_connection(self.broker_addr) as connection:
-            connection.sendall(topic.encode())
+            message = json.dumps(topic)
+            connection.sendall(message.encode())
 
     def receive(self, message):
         print(self, message)

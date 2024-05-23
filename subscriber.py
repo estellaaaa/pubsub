@@ -1,4 +1,5 @@
 import socket
+import sys
 
 class Subscriber:
     def __init__(self, broker_addr, HOST, PORT):
@@ -11,3 +12,8 @@ class Subscriber:
 
     def receive(self, message):
         print(self, message)
+
+if __name__ == '__main__':
+    broker_port = sys.argv[1]
+    own_port = sys.argv[2]
+    subscriber = Subscriber('127.0.0.1', broker_port, own_port)

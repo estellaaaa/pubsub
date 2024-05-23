@@ -8,18 +8,18 @@ PORT = 1212
 # broker = Broker()
 
 print(f"meow")
-sub1 = Subscriber('Maria', ('127.0.0.1', PORT+1))
-sub2 = Subscriber('Garfield', ('127.0.0.1', PORT+2))
-sub3 = Subscriber('Leo', ('127.0.0.1', PORT+3))
+sub1 = Subscriber('Maria', ('127.0.0.1', 11343))
+sub2 = Subscriber('Garfield', ('127.0.0.1', 11343))
+sub3 = Subscriber('Leo', ('127.0.0.1', 11343))
 
-pub1 = Publisher('Spiegel', ('127.0.0.1', PORT+4))
-pub2 = Publisher('BILD', ('127.0.0.1', PORT+5))
+pub1 = Publisher('Spiegel', ('127.0.0.1', 11343))
+pub2 = Publisher('BILD', ('127.0.0.1', 11343))
 
-sub1.subscribe('electronics', port=PORT+6)
-sub1.subscribe('environment', port=PORT+7)
+sub1.subscribe('electronics', port=PORT+1)
+sub1.subscribe('environment', port=PORT+2)
 
-sub2.subscribe('electronics', port=PORT+8)
-sub3.subscribe('sports', port=PORT+9)
+sub2.subscribe('electronics', port=PORT+3)
+sub3.subscribe('sports', port=PORT+4)
 
 
 pub1.publish('a new iphone was announced!!', 'electronics')

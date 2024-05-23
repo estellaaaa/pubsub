@@ -17,7 +17,7 @@ class Broker:
                 incoming_message = conn.recv(1024).decode()
                 if type(incoming_message) == str:
                     print('subscribing')
-                    threading.Thread(target=self.register2, args=(conn, addr)).start()
+                    threading.Thread(target=self.register2, args=(incoming_message, addr)).start()
                 else:
                     print('publishing')
                     # threading.Thread(target=self.register2, args=(conn, addr)).start()
@@ -25,7 +25,7 @@ class Broker:
 
     def register(self, callback, topic):
         try:
-            topic = self.subs[topic]
+            topic = self.subs[topic]    
             topic.append(callback)
         except KeyError:
             self.subs[topic] = [callback]
@@ -38,8 +38,8 @@ class Broker:
         for call in callbacks:
             call(message)
 
-    def register2(self, conn, addr):
-        topic = conn.recv(1024).decode()
+    def register2(self, incoming_message, addr):
+        topic = incoming_message
         try:
             topic = self.subs[topic]
             topic.append(addr)
